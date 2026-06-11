@@ -88,7 +88,15 @@ h4, h5, h6 {
 
 p, table, pre, dl {
     margin: 0 0 20px;
-    /*margin: 0;*/
+}
+
+#header-bio {
+    padding-bottom: 10px;
+}
+
+#header-bio p {
+    margin: 0 0 10px;
+    line-height: 1.55;
 }
 
 a {
