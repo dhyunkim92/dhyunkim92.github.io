@@ -273,10 +273,3 @@ a.pub-btn {
 .abstract-box.show {
     display: block;
 }
-
-/* =============== VSTMAP =============== */
-#visitor-map {
-	margin-top: 50px;
-	margin-bottom: 30px;
-	text-align: center;
-}
