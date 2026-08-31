@@ -21,6 +21,7 @@ themeToggle.addEventListener('click', () => {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   updateThemeIcon();
+  themeToggle.blur();  // 모바일에서 탭 후 포커스 하이라이트가 남지 않도록
 });
 
 // sidebar nav scrollspy
