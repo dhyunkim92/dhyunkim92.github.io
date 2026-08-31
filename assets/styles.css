@@ -20,11 +20,10 @@
     --soft: #98a2ae;            /* 연한 UI (버튼 테두리, 푸터 글자) */
     --secondary: #5a6472;       /* 보조 텍스트 (메타데이터, 저자, 지역 등) */
     --emphasis: #2c333d;        /* 강조 보조 (venue, 버튼 글자, 사이드바 직함) */
-    --box-bg: #f0f4fa;          /* Abstract 펼침 박스 배경 */
+    --box-bg: #f0f4fa;          /* Abstract 박스 + 항목 호버 배경 */
     --btn-bg: #ffffff;          /* Abstract/Paper 버튼 배경 */
     --accent: #e64980;          /* 로즈 포인트 (News 날짜) */
     --tag-bg: rgba(0, 71, 171, 0.09);          /* 논문 태그 배경 */
-    --hover-tint: rgba(0, 71, 171, 0.045);     /* 논문/특허 항목 호버 배경 */
     --selection: rgba(0, 71, 171, 0.12);      /* 텍스트 드래그 선택 색 */
 }
 
@@ -43,7 +42,6 @@
         --btn-bg: #363e49;
         --accent: #faa2c1;
         --tag-bg: rgba(107, 159, 232, 0.16);
-        --hover-tint: rgba(107, 159, 232, 0.08);
         --selection: rgba(107, 159, 232, 0.25);
     }
 }
@@ -62,7 +60,6 @@
     --btn-bg: #363e49;
     --accent: #faa2c1;
     --tag-bg: rgba(107, 159, 232, 0.16);
-    --hover-tint: rgba(107, 159, 232, 0.08);
     --selection: rgba(107, 159, 232, 0.25);
 }
 
@@ -476,11 +473,11 @@ section > div {
     transition: background-color 0.15s ease;
 }
 
-/* 항목 호버 하이라이트 — 마우스 환경에서만 (연한 코발트 틴트) */
+/* 항목 호버 하이라이트 — 마우스 환경에서만 (Abstract 박스와 동일 색) */
 @media (hover: hover) {
     #publications .sparse-list:hover,
     #patents .sparse-list:hover {
-        background-color: var(--hover-tint);
+        background-color: var(--box-bg);
     }
 }
 
@@ -545,9 +542,9 @@ a.pub-btn {
     align-items: center;
     justify-content: center;
 
-    min-width: 42px;
-    height: 24px;
-    padding: 0 12px;
+    min-width: 40px;
+    height: 22px;
+    padding: 0 10px;
 
     border: 1px solid var(--soft);
     border-radius: 4px;
