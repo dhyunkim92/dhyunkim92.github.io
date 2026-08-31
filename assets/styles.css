@@ -345,6 +345,42 @@ section > div {
     line-height: 1.6;
 }
 
+/* About 하단 — Research Interests 칩 */
+#about-interests {
+    margin-top: 22px;
+}
+
+.interests-label {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+    color: var(--secondary);
+    margin-bottom: 10px;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.interest-card {
+    background-color: var(--box-bg);
+    border-radius: 10px;
+    padding: 14px 18px;
+}
+
+.interest-title {
+    font-weight: 500;
+    color: var(--emphasis);
+    margin-bottom: 6px;
+}
+
+.interest-keywords {
+    font-size: 0.88em;
+    line-height: 1.6;
+    color: var(--secondary);
+}
+
 /* ==========================================================================
    News — [날짜 | 내용] 2컬럼 리스트
    ========================================================================== */
