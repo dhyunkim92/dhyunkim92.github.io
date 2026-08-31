@@ -71,9 +71,10 @@ html {
 }
 
 /* 테마 전환 애니메이션 — 토글 클릭 순간에만 scripts.js가 클래스를 잠깐 붙였다 뗌 */
+/* 글자색은 즉시 바뀌고, 배경·구분선만 부드럽게 전환 */
 .theme-anim,
 .theme-anim * {
-    transition: background-color 0.25s ease, color 0.15s ease, border-color 0.25s ease !important;
+    transition: background-color 0.25s ease, border-color 0.25s ease !important;
 }
 
 html, body {
