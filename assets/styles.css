@@ -24,6 +24,7 @@
     --btn-bg: #ffffff;          /* Abstract/Paper 버튼 배경 */
     --accent: #e64980;          /* 로즈 포인트 (News 날짜) */
     --tag-bg: rgba(0, 71, 171, 0.09);          /* 논문 태그 배경 */
+    --hover-tint: rgba(0, 71, 171, 0.045);     /* 논문/특허 항목 호버 배경 */
     --selection: rgba(0, 71, 171, 0.12);      /* 텍스트 드래그 선택 색 */
 }
 
@@ -42,6 +43,7 @@
         --btn-bg: #363e49;
         --accent: #faa2c1;
         --tag-bg: rgba(107, 159, 232, 0.16);
+        --hover-tint: rgba(107, 159, 232, 0.08);
         --selection: rgba(107, 159, 232, 0.25);
     }
 }
@@ -60,6 +62,7 @@
     --btn-bg: #363e49;
     --accent: #faa2c1;
     --tag-bg: rgba(107, 159, 232, 0.16);
+    --hover-tint: rgba(107, 159, 232, 0.08);
     --selection: rgba(107, 159, 232, 0.25);
 }
 
@@ -471,6 +474,14 @@ section > div {
     margin-right: -10px;
     border-radius: 8px;
     transition: background-color 0.15s ease;
+}
+
+/* 항목 호버 하이라이트 — 마우스 환경에서만 (연한 코발트 틴트) */
+@media (hover: hover) {
+    #publications .sparse-list:hover,
+    #patents .sparse-list:hover {
+        background-color: var(--hover-tint);
+    }
 }
 
 /* 논문 제목 줄 */
