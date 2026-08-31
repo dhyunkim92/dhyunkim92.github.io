@@ -17,11 +17,14 @@ if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
 updateThemeIcon();
 
 themeToggle.addEventListener('click', () => {
+  // 전환 순간에만 전체 요소에 색 트랜지션을 걸어 부드럽게 바뀌도록
+  document.documentElement.classList.add('theme-anim');
   const next = isDarkNow() ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   updateThemeIcon();
   themeToggle.blur();  // 모바일에서 탭 후 포커스 하이라이트가 남지 않도록
+  setTimeout(() => document.documentElement.classList.remove('theme-anim'), 350);
 });
 
 // sidebar nav scrollspy

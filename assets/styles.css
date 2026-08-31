@@ -70,6 +70,12 @@ html {
     scroll-behavior: smooth;    /* 내비게이션 클릭 시 부드러운 스크롤 */
 }
 
+/* 테마 전환 애니메이션 — 토글 클릭 순간에만 scripts.js가 클래스를 잠깐 붙였다 뗌 */
+.theme-anim,
+.theme-anim * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
 html, body {
     background-color: var(--bg);
     color: var(--text);
