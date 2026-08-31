@@ -23,7 +23,7 @@
     --box-bg: #f0f4fa;          /* Abstract 펼침 박스 배경 */
     --btn-bg: #ffffff;          /* Abstract/Paper 버튼 배경 */
     --accent: #e64980;          /* 로즈 포인트 (News 날짜) */
-    --tag-border: rgba(0, 71, 171, 0.35);      /* 논문 태그 테두리 */
+    --tag-bg: rgba(0, 71, 171, 0.09);          /* 논문 태그 배경 */
     --selection: rgba(0, 71, 171, 0.12);      /* 텍스트 드래그 선택 색 */
 }
 
@@ -41,7 +41,7 @@
         --box-bg: #3a424e;
         --btn-bg: #363e49;
         --accent: #faa2c1;
-        --tag-border: rgba(107, 159, 232, 0.45);
+        --tag-bg: rgba(107, 159, 232, 0.16);
         --selection: rgba(107, 159, 232, 0.25);
     }
 }
@@ -59,7 +59,7 @@
     --box-bg: #3a424e;
     --btn-bg: #363e49;
     --accent: #faa2c1;
-    --tag-border: rgba(107, 159, 232, 0.45);
+    --tag-bg: rgba(107, 159, 232, 0.16);
     --selection: rgba(107, 159, 232, 0.25);
 }
 
@@ -350,13 +350,6 @@ section > div {
     margin-top: 22px;
 }
 
-.interests-label {
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.88em;
-    color: var(--secondary);
-    margin-bottom: 10px;
-}
-
 .interests-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -370,9 +363,17 @@ section > div {
 }
 
 .interest-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     font-weight: 500;
     color: var(--emphasis);
     margin-bottom: 6px;
+}
+
+.interest-title i {
+    font-size: 0.9em;
+    color: var(--primary);
 }
 
 .interest-keywords {
@@ -502,16 +503,16 @@ section > div {
 .pub-id {
     position: absolute;
     left: 10px;
-    top: 13px;
+    top: 10px;                  /* 제목 첫 줄과 세로 중심 정렬 */
     display: inline-block;
     font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.75em;
     font-weight: 500;
     line-height: 1.4;
     color: var(--primary);
-    border: 1px solid var(--tag-border);
-    border-radius: 3px;
-    padding: 1px 6px;
+    background-color: var(--tag-bg);
+    border-radius: 4px;
+    padding: 2px 7px;
     letter-spacing: 0.3px;
     text-align: center;
     min-width: 20px;
