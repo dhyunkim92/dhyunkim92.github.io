@@ -124,11 +124,14 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: var(--blue);
-    text-decoration: underline;
-    text-underline-offset: 3px;     /* 밑줄을 글자에서 살짝 띄움 */
-    text-decoration-thickness: 1px;
+/* 링크 호버 — 마우스 환경에서만 (터치 기기에서 탭 후 hover가 남는 것 방지) */
+@media (hover: hover) {
+    a:hover {
+        color: var(--blue);
+        text-decoration: underline;
+        text-underline-offset: 3px;     /* 밑줄을 글자에서 살짝 띄움 */
+        text-decoration-thickness: 1px;
+    }
 }
 
 ::selection {
@@ -269,10 +272,18 @@ section > div {
     transition: all 0.15s ease;
 }
 
-#sidebar-social a:hover {
-    color: #ffffff;
-    background-color: var(--fill);
-    text-decoration: none;
+/* 호버 스타일은 마우스 환경에서만 — 터치 기기에서 탭 후 hover가 남는 것 방지 */
+@media (hover: hover) {
+    #sidebar-social a:hover {
+        color: #ffffff;
+        background-color: var(--fill);
+        text-decoration: none;
+    }
+
+    #theme-toggle:hover {
+        color: #ffffff;
+        background-color: var(--fill);
+    }
 }
 
 /* 다크모드 토글 버튼 (달/해 아이콘) */
@@ -292,10 +303,6 @@ section > div {
     padding: 0;
 }
 
-#theme-toggle:hover {
-    color: #ffffff;
-    background-color: var(--fill);
-}
 
 /* 섹션 내비게이션 (스크롤스파이 하이라이트는 scripts.js) */
 #sidebar-nav {
@@ -321,9 +328,11 @@ section > div {
     color: var(--secondary);
 }
 
-#sidebar-nav a:hover {
-    color: var(--navy);
-    text-decoration: none;
+@media (hover: hover) {
+    #sidebar-nav a:hover {
+        color: var(--navy);
+        text-decoration: none;
+    }
 }
 
 /* 현재 보고 있는 섹션 링크 */
@@ -368,7 +377,7 @@ section > div {
     font-weight: 500;
     color: var(--accent);
     flex-shrink: 0;
-    width: 84px;
+    width: 72px;
 }
 
 /* ==========================================================================
@@ -523,10 +532,12 @@ a.pub-btn {
     -webkit-appearance: none;
 }
 
-.pub-btn:hover {
-    background: var(--fill);
-    border-color: var(--fill);
-    color: #ffffff;
+@media (hover: hover) {
+    .pub-btn:hover {
+        background: var(--fill);
+        border-color: var(--fill);
+        color: #ffffff;
+    }
 }
 
 /* Abstract가 열려 있는 동안의 버튼 상태 */
