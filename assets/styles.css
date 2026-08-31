@@ -91,14 +91,14 @@ h1, h2, h3 {
 /* h1 — 사이드바 이름 (세부 스타일은 #sidebar h1에서 덮어씀) */
 h1 {
     font-size: 1.5em;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1.1;
 }
 
 /* h2 — 섹션 제목 (About, News, Experience, Publications) */
 h2 {
     font-size: 1.2em;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--emphasis);
     position: relative;
     line-height: 1.1;
@@ -218,7 +218,7 @@ section > div {
 #sidebar h1 {
     display: block;
     font-size: 1.3em;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.2px;
     margin: 0 0 14px !important;
 }
@@ -231,7 +231,7 @@ section > div {
 /* 직함 (Postdoctoral Researcher) */
 #sidebar-role .role-title {
     font-size: 1.0em;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--emphasis);
 }
 
