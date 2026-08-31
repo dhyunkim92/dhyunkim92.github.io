@@ -1,118 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700&family=Roboto&display=swap');
+/* ==========================================================================
+   폰트 로드 (본문: IBM Plex Sans / 메타데이터: IBM Plex Mono)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ==========================================================================
+   색상 변수
+   - 라이트 모드 기본값 → 다크 모드에서 변수만 교체
+   - 다크 블록이 두 개인 이유: (1) OS 설정 자동 감지, (2) 토글 버튼 수동 선택
+     ※ 두 블록의 값은 항상 똑같이 맞춰줄 것
+   ========================================================================== */
+:root {
+    color-scheme: light dark;
+
+    --bg: #fafbfd;              /* 페이지 배경 (살짝 푸른 톤) */
+    --text: #000000;            /* 기본 텍스트 */
+    --navy: #003875;            /* 진한 파랑: 섹션 제목, 링크, 논문 태그, 내비 활성 */
+    --blue: #0C5CAC;            /* 밝은 파랑: 링크 호버 */
+    --fill: #003875;            /* 흰 글자를 얹는 채움색 (버튼/아이콘 호버 배경) */
+    --line: #e4e8ee;            /* 구분선 (제목 밑줄, 푸터 선, 내비 구분선) */
+    --soft: #98a2ae;            /* 연한 UI (버튼 테두리, 푸터 글자) */
+    --secondary: #5a6472;       /* 보조 텍스트 (메타데이터, 저자, 지역 등) */
+    --emphasis: #2c333d;        /* 강조 보조 (venue, 버튼 글자, 사이드바 직함) */
+    --box-bg: #f0f4fa;          /* Abstract 펼침 박스 배경 */
+    --btn-bg: #ffffff;          /* Abstract/Paper 버튼 배경 */
+    --accent: #ea8b78;          /* 코랄 포인트 (News 날짜) */
+    --tag-border: rgba(0, 56, 117, 0.35);      /* 논문 태그 테두리 */
+    --selection: rgba(12, 92, 172, 0.15);      /* 텍스트 드래그 선택 색 */
+}
+
+/* 다크 모드 ① — OS/브라우저 설정 자동 감지 (수동으로 라이트를 고르면 무시) */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #2f3640;
+        --text: #d7dbe2;
+        --navy: #9dc1ee;
+        --blue: #7fb0e8;
+        --fill: #2f6db3;
+        --line: #48505d;
+        --soft: #6d7684;
+        --secondary: #99a2ad;
+        --emphasis: #cdd3da;
+        --box-bg: #3a424e;
+        --btn-bg: #363e49;
+        --accent: #f5a896;
+        --tag-border: rgba(127, 176, 232, 0.4);
+        --selection: rgba(127, 176, 232, 0.25);
+    }
+}
+
+/* 다크 모드 ② — 토글 버튼으로 수동 선택 (scripts.js가 data-theme 부여) */
+:root[data-theme="dark"] {
+    --bg: #2f3640;
+    --text: #d7dbe2;
+    --navy: #9dc1ee;
+    --blue: #7fb0e8;
+    --fill: #2f6db3;
+    --line: #48505d;
+    --soft: #6d7684;
+    --secondary: #99a2ad;
+    --emphasis: #cdd3da;
+    --box-bg: #3a424e;
+    --btn-bg: #363e49;
+    --accent: #f5a896;
+    --tag-border: rgba(127, 176, 232, 0.4);
+    --selection: rgba(127, 176, 232, 0.25);
+}
+
+/* ==========================================================================
+   기본 요소
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;    /* 내비게이션 클릭 시 부드러운 스크롤 */
+}
 
 html, body {
-    background-color: #fafafa;
-    padding: 0px;
-    margin: 0px;
-    font-family: 'Noto Sans KR', 'Roboto', Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    padding: 0;
+    margin: 0;
+    font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 15px;            /* 전체 기준 크기 — em 값들이 여기 기준 */
 }
 
-header {
-    max-width: 850px;
-    background-color: #ffffff;
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 20px;
-    border-left: 7px solid #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 30px auto;
-}
-
-section {
-    max-width: 850px;
-    background-color: #ffffff;
-    padding-top: 30px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 30px;
-    border-left: 5px solid #003875; /* #0C5CAC #336699 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 30px auto;
-}
-
-footer {
-    max-width: 850px;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: -15px;
-    margin-bottom: 20px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    /* color: #111111; */
+h1, h2, h3 {
     margin: 0 0 20px !important;
     display: flex;
-    font-weight: 700;
 }
 
+/* h1 — 사이드바 이름 (세부 스타일은 #sidebar h1에서 덮어씀) */
 h1 {
     font-size: 1.5em;
-    /* color: #222222; */
-    margin: 0 0 20px;
+    font-weight: 700;
     line-height: 1.1;
 }
 
+/* h2 — 섹션 제목 (About, News, Experience, Publications) */
 h2 {
-	font-size: 1.2em;
-    /* color: #333333; */
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--navy);
     position: relative;
     line-height: 1.1;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);   /* 제목 아래 긴 가로줄 */
 }
 
-h2:after {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 70px;
-    height: 1px;
-    background-color: #003875;
-    display: block;
-}
-
+/* h3 — 소제목 (International Conferences / Journals, Domestic Journals) */
 h3 {
-	font-size: 1.1em;
-    /* color: #333333; */
+    font-size: 1.1em;
+    font-weight: 400;
     position: relative;
     line-height: 1;
-	bottom: -5px;
+    bottom: -5px;
 }
 
-h4, h5, h6 {
-    /* color: #333333; */
-    margin: 0 0 10px;
-}
-
-p, table, pre, dl {
+p {
     margin: 0 0 20px;
-}
-
-#header-bio {
-    padding-bottom: 10px;
-}
-
-#header-bio p {
-    margin: 0 0 10px;
-    line-height: 1.55;
 }
 
 a {
-    color: #0C5CAC;
+    color: var(--navy);
     text-decoration: none;
 }
 
 a:hover {
-    color: #003875;
+    color: var(--blue);
     text-decoration: underline;
+    text-underline-offset: 3px;     /* 밑줄을 글자에서 살짝 띄움 */
+    text-decoration-thickness: 1px;
+}
+
+::selection {
+    background-color: var(--selection);
 }
 
 b {
     font-weight: 500;
 }
 
+/* ==========================================================================
+   레이아웃 — 왼쪽 고정 사이드바 + 오른쪽 콘텐츠 2컬럼
+   ========================================================================== */
+#layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 64px;                  /* 사이드바 ↔ 콘텐츠 간격 */
+    max-width: 1080px;          /* 전체 폭 */
+    margin: 0 auto;
+    padding: 100px 24px 40px;   /* 상단 여백 100px */
+    box-sizing: border-box;
+}
+
+#content {
+    flex: 1;
+    min-width: 0;
+    max-width: none;            /* 남은 공간을 꽉 채움 */
+}
+
+section {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* 섹션 리스트 공통 — 불릿 제거 */
+section ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* 섹션 블록(About, News, ...) 사이 간격 */
+section > div + div {
+    margin-top: 50px;
+}
+
+/* 내비 클릭으로 이동 시 상단에 100px 여유를 두고 착지 */
+section > div {
+    scroll-margin-top: 100px;
+}
+
+/* 리스트 항목 사이 간격 */
 .sparse-list {
     padding-bottom: 15px;
 }
@@ -121,94 +189,302 @@ b {
     padding-bottom: 0;
 }
 
-.small {
-    font-size: 0.9em;
-	margin-top: 0;
-}
-
-/* =============== HEADER =============== */
-#header-info { 
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    overflow: hidden;
-    max-height: 180px;
-    padding-bottom: 10px;
-}
-
-#profile {
-    display: flex;
-    align-items: center;
-    height: 180px;
-    width: auto;
-}
-
-#header-info img {
-    width: auto;
-    height: 160px;
-    margin: 10px;
-    float: right;
-}
-
-#header-bio {
-    font-size: 1.0em;
-}
-
-.quote {
-    font-size: 1.1em;
-    font-weight: 500;
+/* ==========================================================================
+   사이드바 — 프로필 (sticky 고정)
+   ========================================================================== */
+#sidebar {
+    position: sticky;
+    top: 100px;                 /* 스크롤 시 고정되는 위치 */
+    width: 260px;
+    flex-shrink: 0;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 5px;
 }
 
-.quote::before {
-    content: open-quote;
-    display: inline;
-    height: 0;
-    line-height: 0;
-    left: 0;
-    position: relative;
-    top: 9px;
-    color: #ccc;
-    font-size: 2em;
+/* 프로필 사진 — 원형 크롭 */
+#sidebar img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center 20%;    /* 얼굴이 원 안에 오도록 위쪽 기준 크롭 */
+    margin: 0 auto 20px;
+    border-radius: 50%;
 }
 
-.quote::after {
-    content: close-quote;
-    display: inline;
-    height: 0;
-    line-height: 0;
-    left: 0;
-    position: relative;
-    top: 9px;
-    color: #ccc;
-    font-size: 2em;
+/* 이름 */
+#sidebar h1 {
+    display: block;
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 0 0 14px !important;
 }
 
-/* =============== FOOTER =============== */
-#btn {
-    display: none;
-    font-size: 2rem;
-    position: fixed;
-    bottom: 5%;
-    right: 5%;
-    z-index: 99;
-    color: #003875;
+/* 직함 + 소속 묶음 */
+#sidebar-role {
+    margin-bottom: 14px;
 }
 
-#btn:hover {
+/* 직함 (Postdoctoral Researcher) */
+#sidebar-role .role-title {
+    font-size: 1.0em;
+    font-weight: 500;
+    color: var(--emphasis);
+}
+
+/* 소속 (AIST 풀네임) */
+#sidebar-role .role-org {
+    font-size: 0.9em;
+    line-height: 1.55;
+    color: var(--secondary);
+    margin-top: 7px;
+}
+
+/* 이메일 (mono, 여러 줄) */
+#sidebar-email {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85em;
+    line-height: 1.8;
+    color: var(--secondary);
+    margin-bottom: 14px;
+}
+
+/* 소셜 아이콘 줄 (Scholar / LinkedIn / GitHub / CV / 다크모드 토글) */
+#sidebar-social {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 4px;
+}
+
+#sidebar-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 15px;
+    color: var(--secondary);
+    transition: all 0.15s ease;
+}
+
+#sidebar-social a:hover {
+    color: #ffffff;
+    background-color: var(--fill);
+    text-decoration: none;
+}
+
+/* 다크모드 토글 버튼 (달/해 아이콘) */
+#theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    font-size: 14px;
+    color: var(--secondary);
     cursor: pointer;
-    color: #0C5CAC;
+    transition: all 0.15s ease;
+    padding: 0;
 }
 
-/* =============== PUBBTN =============== */
-.publication-item {
-    margin-bottom: 20px;
+#theme-toggle:hover {
+    color: #ffffff;
+    background-color: var(--fill);
 }
 
+/* 섹션 내비게이션 (스크롤스파이 하이라이트는 scripts.js) */
+#sidebar-nav {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85em;
+}
+
+/* 내비 위 가로 구분선 */
+#sidebar-nav::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--line);
+    margin: 0 auto 14px;
+}
+
+#sidebar-nav a {
+    color: var(--secondary);
+}
+
+#sidebar-nav a:hover {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+/* 현재 보고 있는 섹션 링크 */
+#sidebar-nav a.active {
+    color: var(--navy);
+    font-weight: 500;
+}
+
+/* 활성 링크 앞의 ▸ 마커 */
+#sidebar-nav a.active::before {
+    content: '\25B8';
+    margin-right: 6px;
+    color: var(--navy);
+}
+
+/* ==========================================================================
+   About
+   ========================================================================== */
+#about p {
+    margin: 0 0 10px;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   News — [날짜 | 내용] 2컬럼 리스트
+   ========================================================================== */
+#news-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;                  /* 날짜 ↔ 내용 간격 */
+    padding-bottom: 10px;       /* 항목 사이 간격 */
+}
+
+#news-list li:last-child {
+    padding-bottom: 0;
+}
+
+/* 날짜 컬럼 (코랄색, 폭 고정으로 세로 정렬) */
+.news-date {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 84px;
+}
+
+/* ==========================================================================
+   Experience / Education 항목
+   구조: .entry-row.entry-title (기관명 ↔ 지역)
+         .entry-row.entry-sub   (직함/학위 ↔ 기간)
+   ========================================================================== */
+
+/* 한 행 — 왼쪽/오른쪽 양끝 정렬 */
+.entry-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+}
+
+/* 1행(기관명 줄) 아래 간격 */
+.entry-title {
+    margin-bottom: 6px;
+}
+
+/* 2행(직함 줄) — 보조 색, Research Interests의 키워드 줄에도 쓰임 */
+.entry-sub {
+    color: var(--secondary);
+    margin-bottom: 6px;
+}
+
+.entry-sub:last-child {
+    margin-bottom: 0;
+}
+
+/* 지역 (Tokyo, Japan 등) */
+.entry-loc {
+    color: var(--secondary);
+    font-size: 0.95em;
+    white-space: nowrap;
+}
+
+/* 기간 (Nov. 2026 – Present 등) */
+.entry-date {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.95em;
+    color: var(--secondary);
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   Publications
+   구조: .pub-id (태그 배지) + .pub-title (제목) + .pub-authors (저자)
+         + em (venue 줄) + .pub-links (버튼) + .abstract-box (초록)
+   ========================================================================== */
+
+/* 소제목(International Journals 등) 위 간격 */
+#publications ul + h3 {
+    margin-top: 20px !important;
+}
+
+/* 논문 항목 — 태그가 왼쪽에 걸리는 hanging indent */
+#publications .sparse-list,
+#patents .sparse-list {
+    position: relative;
+    padding: 10px 12px 14px 58px;   /* 왼쪽 58px = 태그 자리 */
+    margin-left: -10px;             /* 태그를 컬럼 라인에 맞추기 위한 보정 */
+    margin-right: -10px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+}
+
+/* 논문 제목 줄 */
+#publications .pub-title,
+#patents .pub-title {
+    margin-bottom: 6px;
+}
+
+/* 저자 줄 */
+#publications .pub-authors,
+#patents .pub-authors {
+    margin-bottom: 6px;
+    color: var(--secondary);
+}
+
+/* venue 줄 (ACL 2026 (Main, ...) 등) — 기울임 없이 */
+#publications em,
+#patents em {
+    font-style: normal;
+    font-size: 1.0em;
+    color: var(--emphasis);
+}
+
+/* venue 안의 학회/저널명 강조 */
+.venue-name {
+    font-weight: 500;
+}
+
+/* 논문 태그 배지 (C6 / J11 / D2) — 종류 구분 없이 파랑으로 통일 */
+.pub-id {
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    display: inline-block;
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75em;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--navy);
+    border: 1px solid var(--tag-border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    letter-spacing: 0.3px;
+    text-align: center;
+    min-width: 20px;
+    box-sizing: border-box;
+}
+
+/* Abstract/Paper 버튼 줄 */
 .pub-links {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -227,13 +503,13 @@ a.pub-btn {
     height: 24px;
     padding: 0 12px;
 
-    border: 1.5px solid #333333;
-    border-radius: 3px;
-    background: #ffffff;
-    color: #333333;
+    border: 1px solid var(--soft);
+    border-radius: 4px;
+    background: var(--btn-bg);
+    color: var(--emphasis);
 
-    font-family: inherit;
-    font-size: 0.8rem;
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem;
     font-weight: 500;
     line-height: 1;
     text-decoration: none;
@@ -248,28 +524,88 @@ a.pub-btn {
 }
 
 .pub-btn:hover {
-    background: #003875;
-    border-color: #003875;
+    background: var(--fill);
+    border-color: var(--fill);
     color: #ffffff;
 }
 
+/* Abstract가 열려 있는 동안의 버튼 상태 */
 .pub-btn.is-active {
-    background: #003875;
-    border-color: #003875;
+    background: var(--fill);
+    border-color: var(--fill);
     color: #ffffff;
 }
 
+/* Abstract 펼침 박스 — 높이는 scripts.js가 실측해서 부드럽게 애니메이션 */
 .abstract-box {
-    display: none;
-    margin-top: 5px;
-    padding: 12px 14px;
-    background: #f6f8fc;
-    color: #111111;
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0;
+    padding: 0 16px;
+    background: var(--box-bg);
+    color: var(--emphasis);
     line-height: 1.65;
     font-size: 0.9rem;
-    border-radius: 3px;
+    border-radius: 6px;
+    transition: max-height 0.35s ease, padding 0.25s ease, margin-top 0.25s ease;
 }
 
 .abstract-box.show {
-    display: block;
+    margin-top: 8px;
+    padding: 14px 16px;
+}
+
+/* ==========================================================================
+   푸터 — © 왼쪽 / Last updated 오른쪽
+   ========================================================================== */
+#content footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 56px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75em;
+    color: var(--soft);
+}
+
+/* ==========================================================================
+   모바일 (900px 이하) — 사진·내비 숨기고 텍스트 프로필만 컴팩트하게
+   ========================================================================== */
+@media (max-width: 900px) {
+    #layout {
+        flex-direction: column;
+        gap: 28px;              /* 프로필 ↔ About 간격 */
+        padding-top: 50px;      /* 모바일 상단 여백 */
+    }
+
+    #sidebar {
+        position: static;
+        width: 100%;
+        text-align: left;
+    }
+
+    #sidebar img {
+        display: none;          /* 사진 숨김 */
+    }
+
+    #sidebar h1 {
+        margin: 0 0 7px !important;
+    }
+
+    #sidebar-role {
+        margin-bottom: 10px;
+    }
+
+    #sidebar-email {
+        margin-bottom: 0;
+    }
+
+    #sidebar-social {
+        margin-top: 14px;       /* 아이콘 줄은 가운데 정렬 유지 */
+    }
+
+    #sidebar-nav {
+        display: none;          /* 내비게이션 숨김 */
+    }
 }

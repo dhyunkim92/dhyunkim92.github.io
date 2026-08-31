@@ -1,96 +1,63 @@
-// for viewport
-/*
-var metas = document.getElementsByTagName('meta');
-var i;
-if (navigator.userAgent.match(/iPhone/i)) {
-  for (i=0; i<metas.length; i++) {
-    if (metas[i].name == "viewport") {
-      metas[i].content = "width=device-width, minimum-scale=1.0, maximum-scale=1.0";
-    }
+// dark mode toggle
+const themeToggle = document.getElementById('theme-toggle');
+
+function isDarkNow() {
+  const forced = document.documentElement.getAttribute('data-theme');
+  if (forced) return forced === 'dark';
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function updateThemeIcon() {
+  const icon = themeToggle.querySelector('i');
+  icon.className = isDarkNow() ? 'fa-regular fa-sun' : 'fa-regular fa-moon';
+}
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+updateThemeIcon();
+
+themeToggle.addEventListener('click', () => {
+  const next = isDarkNow() ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeIcon();
+});
+
+// sidebar nav scrollspy
+const navLinks = document.querySelectorAll('#sidebar-nav a');
+const navSections = Array.from(navLinks).map(a => document.querySelector(a.getAttribute('href')));
+
+function updateActiveNav() {
+  let idx = 0;
+  navSections.forEach((sec, i) => {
+    if (sec && sec.getBoundingClientRect().top <= 120) idx = i;
+  });
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5) {
+    idx = navSections.length - 1;
   }
-  document.addEventListener("gesturestart", gestureStart, false);
-}
-function gestureStart() {
-  for (i=0; i<metas.length; i++) {
-    if (metas[i].name == "viewport") {
-      metas[i].content = "width=device-width, minimum-scale=0.25, maximum-scale=1.6";
-    }
-  }
-}
-*/
-
-// for typing animation
-const content = "Making AI knowledgeable and trustworthy"
-/*
-    "MAKER: Making AI knowledgeable, Explainable, and Reliable"
-    "Because there are no meaningless challenges in the world!"
-*/
-
-const txt = document.querySelector(".txt");
-let n = 0;
-
-// normal typing
-function typing(){
-    if (n < content.length) {
-    let char = content.charAt(n);
-    txt.innerHTML += char === "\n" ? "<br/>": char;
-    n++;
-    }
-}
-setInterval(typing, 50)
-
-// loop typing
-/*
-function typing() {
-    txt.innerHTML += content[n++];
-    if(n > content.length) {
-        txt.innerHTML = "";
-        n = 0;
-    }
-};
-setInterval(typing, 30);
-*/
-
-// Get the button
-let mybutton = document.getElementById("btn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+  navLinks.forEach((a, i) => a.classList.toggle('active', i === idx));
 }
 
-// When the user clicks on the button, scroll to the top of the document
-/*
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-*/
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
 
-// smooth scroll
-function topFunction() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-}
-
-// abstract box
+// abstract box (animated: max-height is set to the measured content height
+// so opening and closing both animate over the real distance)
 function toggleAbstract(id, btn) {
-  const allBoxes = document.querySelectorAll('.abstract-box');
-  const allAbsBtns = document.querySelectorAll('.abs-btn');
   const target = document.getElementById(id);
-
   const isOpen = target && target.classList.contains('show');
 
-  allBoxes.forEach(box => box.classList.remove('show'));
-  allAbsBtns.forEach(button => button.classList.remove('is-active'));
+  document.querySelectorAll('.abstract-box.show').forEach(box => {
+    box.style.maxHeight = box.scrollHeight + 'px';
+    void box.offsetHeight; // flush layout so the collapse animates from the real height
+    box.style.maxHeight = '0px';
+    box.classList.remove('show');
+  });
+  document.querySelectorAll('.abs-btn').forEach(button => button.classList.remove('is-active'));
 
   if (target && !isOpen) {
     target.classList.add('show');
+    target.style.maxHeight = (target.scrollHeight + 40) + 'px';
     if (btn) btn.classList.add('is-active');
   }
 }
