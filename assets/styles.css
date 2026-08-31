@@ -292,7 +292,7 @@ section > div {
     border: none;
     border-radius: 50%;
     background: transparent;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--secondary);
     cursor: pointer;
     transition: all 0.15s ease;
@@ -627,11 +627,15 @@ a.pub-btn {
     }
 
     #sidebar h1 {
-        margin: 0 0 7px !important;
+        margin: 0 0 10px !important;
     }
 
     #sidebar-role {
         margin-bottom: 10px;
+    }
+
+    #sidebar-role .role-org {
+        margin-top: 10px;
     }
 
     #sidebar-email {
@@ -640,6 +644,13 @@ a.pub-btn {
 
     #sidebar-social {
         margin-top: 14px;       /* 아이콘 줄은 가운데 정렬 유지 */
+    }
+
+    #sidebar-social a,
+    #theme-toggle {
+        width: 40px;            /* 터치 영역 확대 */
+        height: 40px;
+        font-size: 17px;        /* 아이콘도 키움 */
     }
 
     #sidebar-nav {
