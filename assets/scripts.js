@@ -44,24 +44,3 @@ function updateActiveNav() {
 
 window.addEventListener('scroll', updateActiveNav, { passive: true });
 updateActiveNav();
-
-// abstract box (animated: max-height is set to the measured content height
-// so opening and closing both animate over the real distance)
-function toggleAbstract(id, btn) {
-  const target = document.getElementById(id);
-  const isOpen = target && target.classList.contains('show');
-
-  document.querySelectorAll('.abstract-box.show').forEach(box => {
-    box.style.maxHeight = box.scrollHeight + 'px';
-    void box.offsetHeight; // flush layout so the collapse animates from the real height
-    box.style.maxHeight = '0px';
-    box.classList.remove('show');
-  });
-  document.querySelectorAll('.abs-btn').forEach(button => button.classList.remove('is-active'));
-
-  if (target && !isOpen) {
-    target.classList.add('show');
-    target.style.maxHeight = (target.scrollHeight + 40) + 'px';
-    if (btn) btn.classList.add('is-active');
-  }
-}
