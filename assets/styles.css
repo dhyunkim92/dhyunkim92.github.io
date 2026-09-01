@@ -409,7 +409,7 @@ section > div {
 .timeline {
     position: relative;
     padding-left: 28px;
-    margin-left: 12px;          /* 콘텐츠 왼쪽 라인에서 살짝 안쪽으로 */
+    margin-left: 10px;          /* 콘텐츠 왼쪽 라인에서 살짝 안쪽으로 */
 }
 
 /* 세로 라인 — 양 끝이 부드럽게 사라지는 페이드 */
@@ -494,7 +494,7 @@ section > div {
 /* 학력·경력 항목 — 왼쪽 코발트 액센트 바 */
 #education .sparse-list,
 #experience .sparse-list {
-    border-left: 3px solid var(--primary);
+    border-left: 2px solid var(--primary);
     padding-left: 14px;
     padding-bottom: 0;          /* 바가 항목 내용에만 붙도록 간격은 margin으로 */
     margin-bottom: 16px;
