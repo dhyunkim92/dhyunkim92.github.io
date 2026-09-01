@@ -385,7 +385,7 @@ section > div {
 .interest-title {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 10px;
     font-weight: 500;
     color: var(--emphasis);
     margin-bottom: 6px;
@@ -510,7 +510,7 @@ section > div {
 #education .sparse-list,
 #experience .sparse-list {
     border-left: 2.5px solid var(--primary);
-    padding-left: 14px;
+    padding-left: 12px;
     padding-bottom: 0;          /* 바가 항목 내용에만 붙도록 간격은 margin으로 */
     margin-bottom: 16px;
 }
