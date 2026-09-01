@@ -378,7 +378,7 @@ section > div {
 
 .interest-card {
     background-color: var(--hover-tint);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 14px 18px;
 }
 
