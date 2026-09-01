@@ -23,7 +23,7 @@
     --btn-bg: #ffffff;          /* Paper 버튼 배경 */
     --accent: #e64980;          /* 로즈 포인트 (News 날짜) */
     --tag-bg: rgba(0, 71, 171, 0.09);          /* 논문 태그 배경 */
-    --hover-tint: rgba(0, 71, 171, 0.04);      /* 항목 호버·카드 배경 (반투명 틴트) */
+    --hover-tint: rgba(0, 71, 171, 0.06);      /* 항목 호버·카드 배경 (반투명 틴트) */
     --selection: rgba(0, 71, 171, 0.12);      /* 텍스트 드래그 선택 색 */
 }
 
@@ -41,7 +41,7 @@
         --btn-bg: #363e49;
         --accent: #faa2c1;
         --tag-bg: rgba(107, 159, 232, 0.16);
-        --hover-tint: rgba(107, 159, 232, 0.06);
+        --hover-tint: rgba(107, 159, 232, 0.08);
         --selection: rgba(107, 159, 232, 0.25);
     }
 }
@@ -59,7 +59,7 @@
     --btn-bg: #363e49;
     --accent: #faa2c1;
     --tag-bg: rgba(107, 159, 232, 0.16);
-    --hover-tint: rgba(107, 159, 232, 0.06);
+    --hover-tint: rgba(107, 159, 232, 0.08);
     --selection: rgba(107, 159, 232, 0.25);
 }
 
@@ -490,6 +490,20 @@ section > div {
    구조: .entry-row.entry-title (기관명 ↔ 지역)
          .entry-row.entry-sub   (직함/학위 ↔ 기간)
    ========================================================================== */
+
+/* 학력·경력 항목 — 왼쪽 코발트 액센트 바 */
+#education .sparse-list,
+#experience .sparse-list {
+    border-left: 3px solid var(--primary);
+    padding-left: 14px;
+    padding-bottom: 0;          /* 바가 항목 내용에만 붙도록 간격은 margin으로 */
+    margin-bottom: 16px;
+}
+
+#education .sparse-list:last-child,
+#experience .sparse-list:last-child {
+    margin-bottom: 0;
+}
 
 /* 한 행 — 왼쪽/오른쪽 양끝 정렬 */
 .entry-row {
