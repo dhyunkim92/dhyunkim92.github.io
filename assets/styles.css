@@ -282,10 +282,10 @@ section > div {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    font-size: 15px;
+    font-size: 17px;
     color: var(--secondary);
     transition: all 0.15s ease;
 }
@@ -309,12 +309,12 @@ section > div {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border: none;
     border-radius: 50%;
     background: transparent;
-    font-size: 15px;
+    font-size: 17px;
     color: var(--secondary);
     cursor: pointer;
     transition: all 0.15s ease;
@@ -680,19 +680,6 @@ a.pub-btn {
 }
 
 /* ==========================================================================
-   Honors & Academic Services
-   ========================================================================== */
-
-/* 수상 항목 간 간격 — 한 줄짜리 항목들이라 기본(15px)보다 좁게 */
-#honors .sparse-list {
-    padding-bottom: 5px;
-}
-
-#honors .sparse-list:last-child {
-    padding-bottom: 0;
-}
-
-/* ==========================================================================
    푸터 — © 왼쪽 / Last updated 오른쪽
    ========================================================================== */
 #content footer {
@@ -750,7 +737,7 @@ a.pub-btn {
     #theme-toggle {
         width: 40px;            /* 터치 영역 확대 */
         height: 40px;
-        font-size: 17px;        /* 아이콘도 키움 */
+        font-size: 18px;        /* 아이콘도 키움 */
     }
 
     #sidebar-nav {
