@@ -111,7 +111,7 @@ h1 {
 
 /* h2 — 섹션 제목 (About, News, Experience, Publications) */
 h2 {
-    font-size: 1.2em;
+    font-size: 1.3em;
     font-weight: 500;
     color: var(--emphasis);
     position: relative;
@@ -138,11 +138,15 @@ a {
     text-decoration: none;
 }
 
+/* 링크 안 <u> 밑줄을 호버 밑줄(a:hover)과 같은 두께로 — 호버 시 밑줄이 변하지 않도록 */
+u {
+    text-decoration-thickness: 1px;
+}
+
 /* 링크 호버 — 마우스 환경에서만 (터치 기기에서 탭 후 hover가 남는 것 방지) */
 @media (hover: hover) {
     a:hover {
         text-decoration: underline;
-        text-underline-offset: 3px;     /* 밑줄을 글자에서 살짝 띄움 */
         text-decoration-thickness: 1px;
     }
 }
@@ -233,8 +237,6 @@ section > div {
 /* 이름 */
 #sidebar h1 {
     display: block;
-    font-size: 1.3em;
-    font-weight: 500;
     letter-spacing: 0.2px;
     margin: 0 0 14px !important;
 }
@@ -253,7 +255,7 @@ section > div {
 
 /* 소속 (AIST 풀네임) */
 #sidebar-role .role-org {
-    font-size: 0.9em;
+    font-size: 1.0em;
     line-height: 1.55;
     color: var(--secondary);
     margin-top: 7px;
@@ -262,7 +264,7 @@ section > div {
 /* 이메일 (mono, 여러 줄) */
 #sidebar-email {
     font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.85em;
+    font-size: 0.9em;
     line-height: 1.8;
     color: var(--secondary);
     margin-bottom: 14px;
@@ -327,7 +329,7 @@ section > div {
     flex-direction: column;
     gap: 7px;
     font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.85em;
+    font-size: 0.9em;
 }
 
 /* 내비 위 가로 구분선 */
@@ -460,7 +462,7 @@ section > div {
     display: flex;
     align-items: baseline;      /* 월 라벨과 내용의 글자 밑선 정렬 */
     gap: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     font-size: 1em;             /* 월·내용 동일 크기 */
 }
 
@@ -570,11 +572,10 @@ section > div {
     margin-top: 20px !important;
 }
 
-/* 논문 항목 — 태그가 왼쪽에 걸리는 hanging indent */
-#publications .sparse-list,
-#patents .sparse-list {
+/* 논문·특허 항목 — 태그가 왼쪽에 걸리는 hanging indent (Patents는 Publications 안의 h3 소섹션) */
+#publications .sparse-list {
     position: relative;
-    padding: 10px 12px 14px 58px;   /* 왼쪽 58px = 태그 자리 */
+    padding: 12px 12px 12px 58px;   /* 왼쪽 58px = 태그 자리 */
     margin-left: -10px;             /* 태그를 컬럼 라인에 맞추기 위한 보정 */
     margin-right: -10px;
     border-radius: 8px;
@@ -583,28 +584,24 @@ section > div {
 
 /* 항목 호버 하이라이트 — 마우스 환경에서만 (반투명 코발트 틴트) */
 @media (hover: hover) {
-    #publications .sparse-list:hover,
-    #patents .sparse-list:hover {
+    #publications .sparse-list:hover {
         background-color: var(--hover-tint);
     }
 }
 
 /* 논문 제목 줄 */
-#publications .pub-title,
-#patents .pub-title {
+#publications .pub-title {
     margin-bottom: 6px;
 }
 
 /* 저자 줄 */
-#publications .pub-authors,
-#patents .pub-authors {
+#publications .pub-authors {
     margin-bottom: 6px;
     color: var(--secondary);
 }
 
 /* venue 줄 (ACL 2026 (Main, ...) 등) — 기울임 없이 */
-#publications em,
-#patents em {
+#publications em {
     font-style: normal;
     font-size: 1.0em;
     color: var(--emphasis);
@@ -619,7 +616,7 @@ section > div {
 .pub-id {
     position: absolute;
     left: 10px;
-    top: 10px;                  /* 제목 첫 줄과 세로 중심 정렬 */
+    top: 12px;                  /* 제목 첫 줄과 세로 중심 정렬 — 박스 padding-top과 맞춤 */
     display: inline-block;
     font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.75em;
@@ -705,7 +702,7 @@ a.pub-btn {
     padding-top: 16px;
     border-top: 1px solid var(--line);
     font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.75em;
+    font-size: 0.8em;
     color: var(--soft);
 }
 
@@ -722,7 +719,7 @@ a.pub-btn {
     #sidebar {
         position: static;
         width: 100%;
-        text-align: left;
+        text-align: center;    /* 사진·내비 없는 명함형 헤더라 가운데 정렬 */
     }
 
     #sidebar img {
