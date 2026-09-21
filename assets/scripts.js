@@ -20,7 +20,7 @@ function updateThemeIcon() {
 
 // 모바일 브라우저 상단 크롬 색(theme-color)을 현재 테마의 워시 최상단 색으로 동기화
 // (index.html의 meta는 OS 테마 기준이라, 토글로 강제한 테마와 어긋나지 않게 JS로 덮어씀)
-const THEME_CHROME_COLORS = { light: '#e9eef6', dark: '#333d4c' };
+const THEME_CHROME_COLORS = { light: '#fafbfc', dark: '#2f3640' };
 function updateThemeColorMeta() {
   const color = THEME_CHROME_COLORS[isDarkNow() ? 'dark' : 'light'];
   document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.setAttribute('content', color));

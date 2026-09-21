@@ -90,7 +90,7 @@ html {
 
 /* 상단 그라데이션 워시 (dli.yonsei.ac.kr 스타일) — 코발트 파스텔 두 겹을 페이지 위쪽에만.
    문서와 함께 스크롤되어 올라가며, 색은 --primary 기반이라 다크모드 자동 대응.
-   body가 아니라 html(캔버스)에 칠해야 모바일 상태바·주소창 뒤 영역까지 이어짐 */
+   모바일(900px 이하)에서는 끔 — iOS 상태바 뒤 영역과 색이 안 이어지는 문제 때문 */
 html {
     background-image:
         linear-gradient(135deg,
@@ -711,6 +711,11 @@ section > div {
    모바일 (900px 이하) — 사진·내비 숨기고 텍스트 프로필만 컴팩트하게
    ========================================================================== */
 @media (max-width: 900px) {
+    /* 모바일은 그라데이션 워시 없이 단색 배경 (iOS 상태바 색 단절 문제 회피) */
+    html {
+        background-image: none;
+    }
+
     #layout {
         flex-direction: column;
         gap: 28px;              /* 프로필 ↔ About 간격 */
