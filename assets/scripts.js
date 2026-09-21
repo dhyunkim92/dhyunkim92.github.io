@@ -18,12 +18,21 @@ function updateThemeIcon() {
   icon.className = isDarkNow() ? 'fa-regular fa-sun' : 'fa-regular fa-moon';
 }
 
+// 모바일 브라우저 상단 크롬 색(theme-color)을 현재 테마의 워시 최상단 색으로 동기화
+// (index.html의 meta는 OS 테마 기준이라, 토글로 강제한 테마와 어긋나지 않게 JS로 덮어씀)
+const THEME_CHROME_COLORS = { light: '#e9eef6', dark: '#333d4c' };
+function updateThemeColorMeta() {
+  const color = THEME_CHROME_COLORS[isDarkNow() ? 'dark' : 'light'];
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m => m.setAttribute('content', color));
+}
+
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
 updateThemeIcon();
+updateThemeColorMeta();
 
-// 수동 선택이 없는 상태에서 OS 테마가 바뀌면 아이콘도 따라 바뀌도록
-osDarkQuery.addEventListener('change', updateThemeIcon);
+// 수동 선택이 없는 상태에서 OS 테마가 바뀌면 아이콘·크롬 색도 따라 바뀌도록
+osDarkQuery.addEventListener('change', () => { updateThemeIcon(); updateThemeColorMeta(); });
 
 themeToggle.addEventListener('click', () => {
   // 전환 순간에만 배경색 트랜지션을 걸어 부드럽게 바뀌도록 (styles.css .theme-anim)
@@ -32,6 +41,7 @@ themeToggle.addEventListener('click', () => {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   updateThemeIcon();
+  updateThemeColorMeta();
   themeToggle.blur();  // 모바일에서 탭 후 포커스 하이라이트가 남지 않도록
   setTimeout(() => document.documentElement.classList.remove('theme-anim'), 300);
 });
