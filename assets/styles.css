@@ -25,9 +25,6 @@
     --tag-bg: rgba(0, 71, 171, 0.09);          /* 논문 태그 배경 */
     --hover-tint: rgba(0, 71, 171, 0.06);      /* 항목 호버·카드 배경 (반투명 틴트) */
     --selection: rgba(0, 71, 171, 0.12);       /* 텍스트 드래그 선택 색 */
-    --wash-a: 7%;               /* 상단 워시 1층 시작 농도 */
-    --wash-b: 3%;               /* 1층 중간 농도 */
-    --wash-c: 4%;               /* 2층 시작 농도 */
 }
 
 /* 다크 모드 ① — OS/브라우저 설정 자동 감지 (수동으로 라이트를 고르면 무시) */
@@ -86,22 +83,6 @@
 html {
     background-color: var(--bg);
     scroll-behavior: smooth;    /* 내비게이션 클릭 시 부드러운 스크롤 */
-}
-
-/* 상단 그라데이션 워시 (dli.yonsei.ac.kr 스타일) — 코발트 파스텔 두 겹을 페이지 위쪽에만.
-   문서와 함께 스크롤되어 올라가며, 색은 --primary 기반이라 다크모드 자동 대응.
-   모바일(900px 이하)에서는 끔 — iOS 상태바 뒤 영역과 색이 안 이어지는 문제 때문 */
-html {
-    background-image:
-        linear-gradient(135deg,
-            color-mix(in srgb, var(--primary) var(--wash-a), transparent) 0%,
-            color-mix(in srgb, var(--primary) var(--wash-b), transparent) 45%,
-            transparent 75%),
-        linear-gradient(225deg,
-            color-mix(in srgb, var(--primary) var(--wash-c), transparent) 0%,
-            transparent 55%);
-    background-repeat: no-repeat;
-    background-size: 100% 100%, 100% 40%;   /* 문서 전체 길이에 걸쳐 서서히 페이드 */
 }
 
 html, body {
@@ -711,11 +692,6 @@ section > div {
    모바일 (900px 이하) — 사진·내비 숨기고 텍스트 프로필만 컴팩트하게
    ========================================================================== */
 @media (max-width: 900px) {
-    /* 모바일은 그라데이션 워시 없이 단색 배경 (iOS 상태바 색 단절 문제 회피) */
-    html {
-        background-image: none;
-    }
-
     #layout {
         flex-direction: column;
         gap: 28px;              /* 프로필 ↔ About 간격 */
